@@ -71,10 +71,10 @@ class PaymentAcquirerFlow(models.Model):
         return fees
 
     @api.model
-    def _get_flow_urls(self, environment):
+    def _get_flow_urls(self, fees_implemented):
         base_url = self.env['ir.config_parameter'].sudo().get_param(
                     'web.base.url')
-        if environment == 'prod':
+        if fees_implemented == 'prod':
             return {
                 'flow_form_url': base_url + '/payment/flow/redirect',
                 'flow_url': "https://www.flow.cl/api",
@@ -102,14 +102,14 @@ class PaymentAcquirerFlow(models.Model):
 
      
     def flow_get_form_action_url(self):
-        return self._get_flow_urls(self.environment)['flow_form_url']
+        return self._get_flow_urls(self.fees_implemented)['flow_form_url']
 
     def flow_get_client(self,):
         return Client(
                 self.flow_api_key,
                 self.flow_private_key,
-                self._get_flow_urls(self.environment)['flow_url'],
-                (self.environment == 'test'),
+                self._get_flow_urls(self.fees_implemented)['flow_url'],
+                (self.fees_implemented == 'test'),
             )
 
     def flow_get_banks(self):
