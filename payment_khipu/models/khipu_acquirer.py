@@ -31,7 +31,7 @@ class PaymentAcquirerKhipu(models.Model):
             string="LLave",
         )
 
-    @api.multi
+     
     def _get_feature_support(self):
         res = super(PaymentAcquirerKhipu, self)._get_feature_support()
         res['fees'].append('khipu')
@@ -49,7 +49,7 @@ class PaymentAcquirerKhipu(models.Model):
                 'khipu_form_url': base_url +'/payment/khipu/redirect',
             }
 
-    @api.multi
+     
     def khipu_form_generate_values(self, values):
         #banks = self.khipu_get_banks()#@TODO mostrar listados de bancos
         #_logger.warning("banks %s" %banks)
@@ -74,7 +74,7 @@ class PaymentAcquirerKhipu(models.Model):
         })
         return values
 
-    @api.multi
+     
     def khipu_get_form_action_url(self):
         return self._get_khipu_urls(self.environment)['khipu_form_url']
 
@@ -129,7 +129,7 @@ class PaymentTxKhipu(models.Model):
             raise ValidationError(error_msg)
         return txs[0]
 
-    @api.multi
+     
     def _khipu_form_validate(self, data):
         codes = {
                 '0' : 'Transacción aprobada.',

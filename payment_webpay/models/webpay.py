@@ -67,13 +67,13 @@ class PaymentAcquirerWebpay(models.Model):
             selection_add=[('integ', 'Integración')],
         )
 
-    @api.multi
+     
     def _get_feature_support(self):
         res = super(PaymentAcquirerWebpay, self)._get_feature_support()
         res['fees'].append('webpay')
         return res
 
-    @api.multi
+     
     def webpay_compute_fees(self, amount, currency_id, country_id):
         """ Compute paypal fees.
 
@@ -99,7 +99,7 @@ class PaymentAcquirerWebpay(models.Model):
         url = URLS[self.environment]
         return url
 
-    @api.multi
+     
     def webpay_form_generate_values(self, values):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         values.update({
@@ -120,7 +120,7 @@ class PaymentAcquirerWebpay(models.Model):
         })
         return values
 
-    @api.multi
+     
     def webpay_get_form_action_url(self,):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         logging.info('baseeeeeeeeeeeeee')
@@ -207,7 +207,7 @@ class PaymentTxWebpay(models.Model):
     Permite obtener el resultado de la transaccion una vez que
     Webpay ha resuelto su autorizacion financiera.
     """
-    @api.multi
+     
     def getTransaction(self, acquirer_id, token):
         client = acquirer_id.get_client()
         client.options.cache.clear()
@@ -249,7 +249,7 @@ class PaymentTxWebpay(models.Model):
             raise ValidationError(error_msg)
         return tx_ids[0]
 
-    @api.multi
+     
     def _webpay_form_validate(self, data):
         codes = {
                 '0': 'Transacción aprobada.',

@@ -41,13 +41,13 @@ class PaymentAcquirerFlow(models.Model):
         default='1',
     )
 
-    @api.multi
+     
     def _get_feature_support(self):
         res = super(PaymentAcquirerFlow, self)._get_feature_support()
         res['fees'].append('flow')
         return res
 
-    @api.multi
+     
     def flow_compute_fees(self, amount, currency_id, country_id):
         """ Compute paypal fees.
 
@@ -85,7 +85,7 @@ class PaymentAcquirerFlow(models.Model):
                 'flow_url': "https://sandbox.flow.cl/api",
             }
 
-    @api.multi
+     
     def flow_form_generate_values(self, values):
         #banks = self.flow_get_banks()#@TODO mostrar listados de bancos
         #_logger.warning("banks %s" %banks)
@@ -100,7 +100,7 @@ class PaymentAcquirerFlow(models.Model):
         })
         return values
 
-    @api.multi
+     
     def flow_get_form_action_url(self):
         return self._get_flow_urls(self.environment)['flow_form_url']
 
@@ -184,7 +184,7 @@ class PaymentTxFlow(models.Model):
             raise ValidationError(error_msg)
         return txs[0]
 
-    @api.multi
+     
     def _flow_form_validate(self, data):
         codes = {
                 '0': 'Transacción aprobada.',
