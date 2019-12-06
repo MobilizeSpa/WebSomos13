@@ -59,6 +59,8 @@ class FlowController(http.Controller):
 
     @http.route(['/payment/flow/redirect'],  type='http', auth='public', methods=["POST"], csrf=False, website=True)
     def redirect_flow(self, **post):
+        logging.info(post)
+        logging.info('poooooooooooost redirect')
         acquirer_id = int(post.get('acquirer_id'))
         acquirer = request.env['payment.acquirer'].browse(acquirer_id)
         result = acquirer.flow_initTransaction(post)

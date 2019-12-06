@@ -204,8 +204,6 @@ class PaymentTxFlow(models.Model):
             'fees': data.payment_data['fee'],
         }
         if status in [2]:
-            logging.info(res)
-            logging.info('REEEEEEEEEEEEES')
             _logger.info('Validated flow payment for tx %s: set as done' % (self.reference))
             res.update(state='done', date=datetime.now())
             return self.write(res)
