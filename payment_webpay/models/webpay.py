@@ -96,7 +96,7 @@ class PaymentAcquirerWebpay(models.Model):
         return fees
 
     def _get_webpay_urls(self):
-        url = URLS[self.environment]
+        url = URLS[self.state] #enviroment
         return url
 
      
