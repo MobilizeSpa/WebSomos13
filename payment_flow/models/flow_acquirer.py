@@ -207,7 +207,7 @@ class PaymentTxFlow(models.Model):
             logging.info(res)
             logging.info('REEEEEEEEEEEEES')
             _logger.info('Validated flow payment for tx %s: set as done' % (self.reference))
-            res.update(state='done', date_validate=datetime.now())
+            res.update(state='done', date=datetime.now())
             return self.write(res)
         elif status in [1, '-7']:
             _logger.warning('Received notification for flow payment %s: set as pending' % (self.reference))
