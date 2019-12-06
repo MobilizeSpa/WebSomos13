@@ -7,7 +7,7 @@
             <field name="model">payment.acquirer</field>
             <field name="inherit_id" ref="payment.acquirer_form"/>
             <field name="arch" type="xml">
-              <field name="environment" position="after">
+              <field name="fees_implemented" position="after">
                 <field name="webpay_mode" attrs="{'invisible':[('provider','!=','webpay')]}"/>
               </field>
                 <xpath expr='//group[@name="acquirer"]' position='after'>
