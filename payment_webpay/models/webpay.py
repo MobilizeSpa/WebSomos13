@@ -63,8 +63,8 @@ class PaymentAcquirerWebpay(models.Model):
             ],
             string="Webpay Mode",
         )
-    environment = fields.Selection(
-            selection_add=[('integ', 'Integración')],
+    state = fields.Selection(
+            selection_add=[('integ', 'Integración')], #enviroment
         )
 
      
