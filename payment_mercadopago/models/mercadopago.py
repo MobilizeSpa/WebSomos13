@@ -230,7 +230,7 @@ class AcquirerMercadopago(models.Model):
 
         if MPago:
 
-            if acquirer.environment=="prod":
+            if acquirer.state=="prod":
                 MPago.sandbox_mode(False)
             else:
                 MPago.sandbox_mode(True)
@@ -336,7 +336,7 @@ class AcquirerMercadopago(models.Model):
                 raise ValidationError(error_msg)
 
 
-            if acquirer.environment=="prod":
+            if acquirer.state=="prod":
                 linkpay = preferenceResult['response']['init_point']
             else:
                 linkpay = preferenceResult['response']['sandbox_init_point']
