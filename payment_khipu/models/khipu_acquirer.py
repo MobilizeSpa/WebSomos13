@@ -76,7 +76,7 @@ class PaymentAcquirerKhipu(models.Model):
 
      
     def khipu_get_form_action_url(self):
-        return self._get_khipu_urls(self.environment)['khipu_form_url']
+        return self._get_khipu_urls(self.state)['khipu_form_url']
 
     def khipu_get_client(self,):
         return Client(
