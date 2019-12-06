@@ -379,7 +379,7 @@ class AcquirerMercadopago(models.Model):
         return mercadopago_tx_values
 
     def mercadopago_get_form_action_url(self):
-        return self._get_mercadopago_urls( self.environment)['mercadopago_form_url']
+        return self._get_mercadopago_urls( self.state)['mercadopago_form_url']
 
     def _mercadopago_s2s_get_access_token(self, ids, context=None):
         """
@@ -391,7 +391,7 @@ class AcquirerMercadopago(models.Model):
         parameters = werkzeug.url_encode({'grant_type': 'client_credentials'})
 
         for acquirer in self.browse( ids, context=context):
-            tx_url = self._get_mercadopago_urls( acquirer.environment)['mercadopago_rest_url']
+            tx_url = self._get_mercadopago_urls( acquirer.state)['mercadopago_rest_url'] #enviroment
             request = urllib2.Request(tx_url, parameters)
 
             # add other headers (https://developer.paypal.com/webapps/developer/docs/integration/direct/make-your-first-call/)
