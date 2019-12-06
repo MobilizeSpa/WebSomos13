@@ -70,7 +70,7 @@ class PaymentAcquirerWebpay(models.Model):
      
     def _get_feature_support(self):
         res = super(PaymentAcquirerWebpay, self)._get_feature_support()
-        res['fees'].append('webpay')
+        res['fees'].append('webpay') 
         return res
 
      
